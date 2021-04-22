@@ -9,11 +9,7 @@ class UserService {
         this.userRepository = getCustomRepository(UsersRepository)
     }
 
-
-    async create(email: string){
-
-
-
+    async findByEmail(email:string){
         const userExists = await this.userRepository.findOne({
             where: {email}
         })
@@ -22,6 +18,11 @@ class UserService {
             return userExists;
         }
 
+    }
+
+    async create(email: string){
+
+        
         const user = this.userRepository.create({
             email
         })
